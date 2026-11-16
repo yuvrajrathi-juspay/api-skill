@@ -1,6 +1,6 @@
 ---
 name: google-aip
-description: Google API Improvement Proposals (google.aip.dev), verbatim. Use to design or review REST/gRPC/proto APIs: resources, methods, fields, pagination, LROs, errors, versioning, or any AIP-N.
+description: "Google API Improvement Proposals (google.aip.dev), verbatim. Use to design or review REST/gRPC/proto APIs: resources, methods, fields, pagination, LROs, errors, versioning, or any AIP-N."
 ---
 
 # Google API Improvement Proposals (AIPs)
