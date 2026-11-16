@@ -202,7 +202,8 @@ def check_counts(aips: dict[int, dict]) -> None:
         problem("counts", f"README.md says general/ has {m.group(1)} AIPs; it has {general}")
 
 
-SECTION_RE = re.compile(r"AIP-(\d+) § ([^\n]+)")
+# Lookahead so that several citations on one line are each matched.
+SECTION_RE = re.compile(r"AIP-(\d+) § (?=([^\n]+))")
 
 
 def check_sections(aips: dict[int, dict]) -> None:

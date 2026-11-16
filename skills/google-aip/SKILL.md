@@ -13,6 +13,9 @@ of the upstream source (<https://github.com/aip-dev/google.aip.dev>, revision in
 replaced by a provenance header; cross-links were rewritten to local files; and a short
 "skill packaging" note was added to each draft/reviewing AIP and to the news archive.
 
+`guides/` holds working aids written for this skill, not upstream text. They point into
+`references/` and never override it.
+
 **The reference files are the authority. This file is a map.** Before you state what an
 AIP requires, open the relevant reference file and read the section itself. The quick
 reference below only exists to point you at the right file faster.
@@ -67,6 +70,9 @@ reference below only exists to point you at the right file faster.
    retries 194, versioning 185 and 184, compatibility 180 and stability 181.
 
 ### Reviewing an API, `.proto` or OpenAPI spec for compliance
+Work through `guides/review-checklist.md`. It lists, construct by construct, what to check
+and which `AIP-N § Section` governs it. It also lists the claims reviewers most often
+get wrong (a **should** reported as a **must**, or guidance that has since been dropped).
 For each resource, method, field and message, check it against the applicable AIPs.
 Report each finding with: location → AIP-N § section → quoted rule (keeping its
 **must**/**should** strength) → concrete fix. Rank **must** violations above **should**
