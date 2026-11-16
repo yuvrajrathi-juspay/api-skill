@@ -1,0 +1,6 @@
+{
+  "name": "api-skill",
+  "description": "The complete Google AIP corpus (google.aip.dev) as a skill for designing and reviewing APIs.",
+  "version": "1.0.0",
+  "author": { "name": "Yuvraj Rathi" }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "api-skill",
+  "description": "Google API Improvement Proposals (google.aip.dev) packaged as an Agent Skill for Claude and Claude Code.",
+  "owner": { "name": "Yuvraj Rathi" },
+  "plugins": [
+    {
+      "name": "api-skill",
+      "source": "./",
+      "description": "The complete Google AIP corpus (google.aip.dev) as a skill for designing and reviewing APIs."
+    }
+  ]
+}
