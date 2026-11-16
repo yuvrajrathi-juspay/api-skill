@@ -55,6 +55,9 @@ reference below only exists to point you at the right file faster.
    you are not using protos you won't be able to follow the example snippets exactly, but
    you can "follow the _spirit_ of the API guidance". Map proto concepts (RPC,
    `google.api.http`, field behavior) to the user's IDL, such as OpenAPI, accordingly.
+   `guides/rest-json-mapping.md` shows the wire form: paths, bodies, query
+   parameters, JSON encoding, the AIP-193 error body, and an OpenAPI mapping for field
+   behavior. Each part is labeled as AIP text, Proto JSON, or skill suggestion.
 
 ## How to work
 

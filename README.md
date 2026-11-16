@@ -12,7 +12,8 @@ adhere strictly to the AIP guidance.
 skills/google-aip/
 ├── SKILL.md                     # How to apply AIPs, routing table, quick reference
 ├── guides/
-│   └── review-checklist.md      # Construct-by-construct review pass, AIP § pointers
+│   ├── review-checklist.md      # Construct-by-construct review pass, AIP § pointers
+│   └── rest-json-mapping.md     # The AIPs on the wire for REST/JSON and OpenAPI users
 └── references/
     ├── INDEX.md                 # Catalog of every AIP: number, title, state, file
     ├── general/                 # AIP-1 … AIP-236 (73 AIPs)
@@ -36,6 +37,9 @@ skills/google-aip/
 - **Guides** written for the skill (kept separate from the verbatim references). The
   review checklist walks a `.proto` or spec construct by construct and points every
   check to its `AIP-N § Section`; CI verifies that each of those sections exists.
+  The REST/JSON guide is for teams without protobuf. It shows each standard method as
+  an HTTP request and response, plus JSON encoding, the AIP-193 error body, and
+  OpenAPI field behavior. It separates AIP text from suggestions of its own.
 - `SKILL.md` tells Claude to treat the reference files as the authority, preserve the
   RFC 2119 requirement strength (**must** / **should** / **may**), flag draft and
   reviewing AIPs, and cite the AIP and section for every rule it applies.
