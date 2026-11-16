@@ -117,7 +117,20 @@ python3 scripts/build_references.py /tmp/aip /tmp/ebnf-filtering.txt
 
 The script regenerates `skills/google-aip/references/` deterministically and exits with
 an error if any internal link can't be resolved. If upstream adds AIPs or categories,
-also update the routing table in `SKILL.md`.
+also update the routing table in `SKILL.md`. Then run:
+
+```bash
+pip install pyyaml
+python3 scripts/validate_skill.py
+```
+
+The validator catches the places where `SKILL.md` can fall out of step with a fresh
+`references/` tree. It reports an AIP that is missing from the routing table, a change in
+an AIP's draft or approved state, stale AIP counts, and `AIP-N § Section` citations
+whose heading no longer exists. It also checks that the frontmatter parses as strict
+YAML, that every path and link resolves, and that each eval case is well-formed. CI runs
+the validator on every push and pull request. Each Monday, CI also warns if
+`aip-dev/google.aip.dev` has moved past `UPSTREAM_REVISION`.
 
 ### Packaging notes
 

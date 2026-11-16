@@ -1,0 +1,41 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays: report upstream AIP changes
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  skill:
+    name: Skill consistency
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - run: python scripts/validate_skill.py
+      - run: python -m py_compile scripts/build_references.py
+
+  upstream:
+    name: Upstream drift
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare UPSTREAM_REVISION with aip-dev/google.aip.dev
+        run: |
+          pinned=$(cat skills/google-aip/references/UPSTREAM_REVISION)
+          latest=$(git ls-remote https://github.com/aip-dev/google.aip.dev HEAD | cut -f1)
+          if [ "$pinned" = "$latest" ]; then
+            echo "references/ is current at $pinned"
+          else
+            echo "::warning title=AIP upstream moved::references/ is pinned to ${pinned:0:12}, upstream HEAD is ${latest:0:12}. Compare: https://github.com/aip-dev/google.aip.dev/compare/${pinned}...${latest}"
+          fi
