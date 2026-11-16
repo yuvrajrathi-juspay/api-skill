@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: review-legacy-proto
+expected_outcome: |
+  review.md identifies the seeded AIP violations in books.proto (Get response wrapper, missing pagination fields, Async/Create naming, PUT without update_mask, body on Delete, custom method URI without :verb, is_ boolean prefix, string timestamps, singular repeated field, missing field_behavior annotations, missing book_id on create), each with the AIP it violates and a fix.
+context:
+  scaffold_script: place-files.sh

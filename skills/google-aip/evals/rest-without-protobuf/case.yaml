@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: rest-without-protobuf
+expected_outcome: |
+  rest-design.md maps AIP guidance onto plain REST/JSON: GET collection with page size/token query params and a next page token in the response; GET single order returning the order directly with a resource name; POST .../orders/{order}:cancel custom method; error body shaped like google.rpc.Status with NOT_FOUND/404 and an ErrorInfo detail.

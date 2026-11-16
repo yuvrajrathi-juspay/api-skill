@@ -77,6 +77,36 @@ an owner may need to allow skills.
 - "Is adding a required field to `CreateBookRequest` a breaking change?"
 - "How should I name a boolean field that says whether a book is archived?"
 
+## Evaluation
+
+`skills/google-aip/evals/` holds an eval suite for
+[`claude plugin eval`](https://code.claude.com/docs/en/plugins). It has five cases, and
+each one tests a different way the skill gets used:
+
+| Case | What it checks |
+|---|---|
+| `design-library-proto` | Greenfield design: standard methods, HTTP mappings, field behavior, a custom method |
+| `review-legacy-proto` | Review: finds 12 seeded violations in `files/books.proto`, each tied to its AIP |
+| `breaking-change-check` | Compatibility: tells breaking changes (AIP-180) apart from permitted ones (AIP-132) |
+| `rest-without-protobuf` | Applying the AIPs to plain REST/JSON (FastAPI) with no protos |
+| `uuid-user-ids` | Recency: catches guidance that changed upstream (AIP-122 changelog, 2025-03-10) |
+
+Every case has a "no contradictions of AIP text" grader, because the main failure we
+want to catch is a confident answer that misstates a rule's strength, cites the wrong
+AIP, or repeats outdated guidance.
+
+```bash
+claude plugin eval . --eval-dir skills/google-aip/evals --scaffold
+```
+
+`--scaffold` is needed for `review-legacy-proto`, which copies `books.proto` into the
+workspace. By default the run includes a no-skill baseline arm. On the first iteration
+(one run per configuration), the skill passed 100% of grader checks and the baseline
+passed 73%. The baseline failed the no-contradictions grader in all five cases. For
+example, it upgraded AIP-134's **should** use PATCH to a **must**, and it repeated the
+UUID rule that was dropped from AIP-122.
+Results are written to `skills/google-aip/evals/results/`, which is git-ignored.
+
 ## Updating to a newer AIP revision
 
 ```bash

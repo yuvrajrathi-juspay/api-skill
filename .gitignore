@@ -2,3 +2,5 @@
 __pycache__/
 *.pyc
 dist/
+skills/*-workspace/
+skills/google-aip/evals/results/

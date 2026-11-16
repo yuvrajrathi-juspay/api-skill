@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package acme.library.v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service LibraryService {
+  rpc GetBook(GetBookRequest) returns (GetBookResponse) {
+    option (google.api.http) = {
+      get: "/v1/{name=publishers/*/books/*}"
+    };
+  }
+
+  rpc ListBooks(ListBooksRequest) returns (ListBooksResponse) {
+    option (google.api.http) = {
+      get: "/v1/{parent=publishers/*}/books"
+    };
+  }
+
+  rpc CreateBookAsync(CreateBookRequest) returns (Book) {
+    option (google.api.http) = {
+      post: "/v1/{parent=publishers/*}/books"
+      body: "book"
+    };
+  }
+
+  rpc UpdateBook(UpdateBookRequest) returns (Book) {
+    option (google.api.http) = {
+      put: "/v1/{book.name=publishers/*/books/*}"
+      body: "book"
+    };
+  }
+
+  rpc DeleteBook(DeleteBookRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/{name=publishers/*/books/*}"
+      body: "*"
+    };
+  }
+
+  rpc ArchiveBook(ArchiveBookRequest) returns (Book) {
+    option (google.api.http) = {
+      post: "/v1/{name=publishers/*/books/*}/archive"
+      body: "*"
+    };
+  }
+}
+
+message Book {
+  string name = 1;
+  string title = 2;
+  bool is_archived = 3;
+  string created_at = 4;
+  repeated string tag = 5;
+}
+
+message GetBookRequest {
+  string name = 1;
+}
+
+message GetBookResponse {
+  Book book = 1;
+}
+
+message ListBooksRequest {
+  string parent = 1;
+  int32 limit = 2;
+}
+
+message ListBooksResponse {
+  repeated Book books = 1;
+}
+
+message CreateBookRequest {
+  string parent = 1;
+  Book book = 2;
+}
+
+message UpdateBookRequest {
+  Book book = 1;
+}
+
+message DeleteBookRequest {
+  string name = 1;
+}
+
+message ArchiveBookRequest {
+  string name = 1;
+}

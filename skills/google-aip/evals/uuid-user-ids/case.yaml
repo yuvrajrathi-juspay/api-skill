@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: uuid-user-ids
+expected_outcome: |
+  answer.md explains that the guidance disallowing UUIDs in user-specified IDs was dropped from AIP-122 (2025-03-10), and that uid is an optional, output-only, system-assigned UUID4 field per AIP-148 (should be included for declarative-friendly resources) rather than mandatory for every resource.

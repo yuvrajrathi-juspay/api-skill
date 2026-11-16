@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: breaking-change-check
+expected_outcome: |
+  answer.md says (1) adding a required field to an existing request is breaking and (2) renaming a field is breaking (add the new field alongside instead), both per AIP-180, while (3) changing the List default page_size is permitted because AIP-132 says the default may change over time.

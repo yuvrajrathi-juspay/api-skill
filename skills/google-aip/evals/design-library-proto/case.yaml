@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: design-library-proto
+expected_outcome: |
+  library.proto defines an AIP-compliant LibraryService: Book resource annotated with google.api.resource and pattern publishers/{publisher}/books/{book}; standard Get/List/Create/Update/Delete methods with the AIP-mandated HTTP mappings, request fields and method signatures; pagination and filter fields; an :archive custom method; field_behavior annotations; Timestamp-typed *_time fields.
